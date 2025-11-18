@@ -1,0 +1,27 @@
+<html>
+    <body>
+        {% load static %}
+        <h1> Lista de Veiculos </h1>
+
+<form method='POST'>
+    {% csrf_token %}
+<input type='text' name='pesquisar'>
+<button type='submit' name='botao'>pesquisar</button>
+</form>
+
+
+        {% for veiculo in dados %}
+    <p> {{ veiculo.modelo }} </p> <br>
+    <p> {{ veiculo.ano }} </p> <br>
+    <p> {{ veiculo.cor }} </p> <br>
+    <p> {{ veiculo.placa }} </p> <br>
+    {% if veiculo.foto %}
+        <img src="{{ veiculo.foto.url }}" alt="{{ veiculo.modelo }}'s photo" width=100px>
+    {% else %}
+        <img src="{% static 'carro.webp' %}" width=100px>
+    {% endif %}
+    <p> -------------------------------------- </p>
+{% endfor %}
+
+    </body>
+</html>

@@ -1,0 +1,41 @@
+{% extends "base.html"%}
+{% load crispy_forms_tags%}
+{% load static %}
+
+{% block main %}
+<h1>Listagem de Clientes<h1>
+
+<form method='POST'>
+    {% csrf_token %}
+    {{ form | crispy }}
+<input type='text' name='pesquisar'>
+<button type='submit' name='botao'>pesquisar</button>
+</form>
+
+<ul class="list-group">
+{% for cliente in dados%}
+<li class="list-group-item">
+    {{cliente.nome}} </br>
+    {% if cliente.endereço %}
+        {{ cliente.endereço }} <br>
+    {% endif %}
+    {% if cliente.complemento %}
+        {{ cliente.complemento }} <br>
+    {% endif %}
+    <p> {{cliente.bairro}} </p>
+    <p> {{cliente.cidade}} </p>
+    <p> {{cliente.cep}} </p>
+    <p> {{cliente.telefone}} </p>
+    <p> {{cliente.email}} </p>
+    {% if cliente.foto %}
+        <img src="{{ cliente.foto.url }}" alt="{{ cliente.nome }}'s photo" width=100>
+    {% else %}
+    <img src="{% static 'cliente_generica.png'%}" width=100>
+    <br>
+{% endif %}
+<a href="{% url 'url_atualiza_cliente' cliente.id %}">Atualizar</a>
+<a href="{% url 'url_exclui_cliente' cliente.id %}">Excluir</a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

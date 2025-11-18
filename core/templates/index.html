@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">k2mcar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Cliente
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="cadastro_cliente">Cadastro</a></li>
+            <li><a class="dropdown-item" href="listagem_clientes">Relatório</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Veiculo
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="cadastro_veiculo">Cadastro</a></li>
+            <li><a class="dropdown-item" href="listagem_veiculos">Relatório</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Fabricante
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="cadastro_fabricante">Cadastro</a></li>
+            <li><a class="dropdown-item" href="listagem_fabricantes">Relatório</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+        {% if user.get_username%}
+            {{ user.get_username }} | 
+            <form method='post' action='{% url 'logout'%}' style='display:inline; '>
+                {% csrf_token%}
+                <button type='submit' style='background: none; border: none; color: blue;'>logout</button>
+            </form> | <a href='/admin/'>admin</a>
+        {% else %}
+            Anônimo | <a href="{% url 'login' %}">login</a> | <a href=" {% url 'url_registrar' %}">Registrar</a>
+        {% endif %}
+    </div>
+
+      
+  </div>
+</nav>
+<br>
+<br>
+<img src='{% static "logo.png"%}' width="100%">
+{% endblock %}
+

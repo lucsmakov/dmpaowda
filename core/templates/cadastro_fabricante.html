@@ -1,0 +1,10 @@
+<html>
+    <body>
+        <h1> Cadastro de fabricante </h1>
+        {% comment %} enctype para conseguir enviar arquivos {% endcomment %}
+        <form method='POST' enctype='multipart/form-data'>
+            {%csrf_token%} {% comment %} insere um token para validar os dados no servidor {% endcomment %}
+            {{form.as_p}}  {% comment %} as-p formata os inputs como parágrafos {% endcomment %}
+            <button type='submit'> {{label_botao}} </button>
+    </body>
+</html>

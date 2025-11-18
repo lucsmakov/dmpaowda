@@ -1,0 +1,8 @@
+<h1>Autenticação de usuário</h1>
+
+<form method='post' >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>login</button>
+    <button type='button' onclick="location.href='{% url 'url_principal' %}'">Voltar</button>
+</form>

@@ -1,0 +1,20 @@
+
+<html>
+    <body>
+        {% load static %}
+        <h1> Lista de Veiculos </h1>
+
+        
+{% for fabricante in dados %}
+    <p> {{ fabricante.nome }} </p> <br>
+    <p> {{ fabricante.site }} </p> <br>
+    {% if fabricante.logo %}
+        <img src="{{ fabricante.logo.url }}" alt="{{ fabricante.nome }} logo" width=100px>
+    {% else %}
+        <img src="{% static 'ford.png' %}" width=100px>
+    {% endif %}
+    <p> -------------------------------------- </p>
+{% endfor %}
+
+    </body>
+</html>

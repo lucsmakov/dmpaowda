@@ -1,0 +1,20 @@
+<html>
+<body>
+
+<h1>
+    Confirmação
+</h1>
+Você está tentando excluir o {{tipo_confirmacao}}: {{valor_confirmacao}}. Você está certo disso?
+<form method='post'>
+    {%csrf_token%}
+    <button type='submit'>
+        SIM 
+    </button>
+    <button type='button' onclick=location.href='{% url "url_listagem_clientes" %}'>
+        NÃO
+    </button>
+
+
+
+</body>
+</html>
